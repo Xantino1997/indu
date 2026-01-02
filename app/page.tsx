@@ -1,9 +1,14 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Search, Heart, ShoppingCart } from 'lucide-react';
 
 const ClothingStore = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const slides = [
     {
@@ -93,6 +98,7 @@ const ClothingStore = () => {
       </nav>
 
       {/* Hero Section */}
+      {isMounted && (
       <div className="pt-16 md:pt-20 min-h-screen flex flex-col items-center justify-center px-2 sm:px-4 py-8 md:py-12">
         {/* Title */}
         <div className="mb-8 md:mb-12 lg:mb-16 text-center px-4">
@@ -245,8 +251,10 @@ const ClothingStore = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* Mobile Menu */}
+      {isMounted && (
       <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-lg rounded-full shadow-[0_10px_40px_rgba(220,38,38,0.2)] px-4 sm:px-6 py-2.5 sm:py-3 border border-red-100/50">
         <div className="flex items-center space-x-4 sm:space-x-6">
           <a href="#mujeres" className="text-gray-700 hover:text-red-600 text-xs sm:text-sm font-medium transition-colors">Mujeres</a>
@@ -254,6 +262,7 @@ const ClothingStore = () => {
           <a href="#rebajas" className="text-gray-700 hover:text-red-600 text-xs sm:text-sm font-medium transition-colors">Rebajas</a>
         </div>
       </div>
+      )}
     </div>
   );
 };
